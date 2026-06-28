@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+$zelena: rgb(137, 144, 83);
+$zluta: rgb(237, 188, 84);
+$oranzova: rgb(200, 123, 77);
+$ruzova: rgb(243, 190, 172);
+
+:root {
+  --color-zelena: #{$zelena};
+  --color-zluta: #{$zluta};
+  --color-oranzova: #{$oranzova};
+  --color-ruzova: #{$ruzova};
+  --color-text: #333;
+  --color-bg: #fffcf9;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  //background-color: var(--color-bg);
+  background-image: url('/assets/bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--color-text);
+  line-height: 1.6;
+
+}
+
+h1, h2, h3 {
+  color: var(--color-zelena);
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a {
+  color: var(--color-oranzova);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+section {
+  padding: 40px 0;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  border-left: 5px solid var(--color-zelena);
+}
