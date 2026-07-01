@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-program',
@@ -8,11 +9,11 @@ import { RouterLink } from '@angular/router';
   imports: [CommonModule, RouterLink],
   template: `
     <div class="container">
-      <a routerLink="/" class="back-link">← Zpět</a>
-      <h1>Program</h1>
+      <a routerLink="/" class="back-link">{{ ts.translate('back') }}</a>
+      <h1>{{ ts.translate('program_page.title') }}</h1>
 
-      <div class="timeline">
-        <div class="timeline-item" *ngFor="let item of program">
+      <div class="timeline" *ngIf="ts.hasTranslation('program_page.items')">
+        <div class="timeline-item" *ngFor="let item of ts.translate('program_page.items')">
           <div class="time">{{item.time}}</div>
           <div class="event card">{{item.event}}</div>
         </div>
@@ -47,11 +48,5 @@ import { RouterLink } from '@angular/router';
   `]
 })
 export class ProgramComponent {
-  program = [
-    { time: '12:00', event: 'Příjezd hostů' },
-    { time: '13:00', event: 'Obřad ve Skanzenu' },
-    { time: '14:00', event: 'Polévka a občerstvení' },
-    { time: '17:00–19:00', event: 'Grilování a dort' },
-    { time: 'Po 19:00', event: 'Volná zábava, tanec' }
-  ];
+  ts = inject(TranslationService);
 }

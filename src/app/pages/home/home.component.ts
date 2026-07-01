@@ -1,25 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslationService } from '../../services/translation.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgIf],
   template: `
     <div class="hero">
       <div class="hero-content">
-        <h1>Terka & Filip</h1>
+        <h1>{{ ts.translate('title') }}</h1>
 <!--        <img src="/assets/bg.webp" alt="Terka & Filip" class="hero-image">-->
-        <p class="date">15. června 2026</p>
+        <p class="date">{{ ts.translate('date') }}</p>
       </div>
     </div>
 
     <div class="container nav-grid">
-      <a routerLink="/program" class="nav-card" style="background-color: var(--color-zelena)">Program</a>
-      <a routerLink="/ubytovani" class="nav-card" style="background-color: var(--color-zluta)">Ubytování</a>
-      <a routerLink="/doprava" class="nav-card" style="background-color: var(--color-oranzova)">Doprava</a>
-      <a routerLink="/dresscode-jidlo" class="nav-card" style="background-color: var(--color-ruzova)">Dresscode & Jídlo</a>
-      <a routerLink="/dary-pomoc" class="nav-card" style="background-color: var(--color-zelena)">Dary & Pomoc</a>
+      <a *ngIf="ts.hasTranslation('nav.program')" routerLink="/program" class="nav-card" style="background-color: var(--color-zelena)">{{ ts.translate('nav.program') }}</a>
+      <a *ngIf="ts.hasTranslation('nav.ubytovani')" routerLink="/ubytovani" class="nav-card" style="background-color: var(--color-zluta)">{{ ts.translate('nav.ubytovani') }}</a>
+      <a *ngIf="ts.hasTranslation('nav.doprava')" routerLink="/doprava" class="nav-card" style="background-color: var(--color-oranzova)">{{ ts.translate('nav.doprava') }}</a>
+      <a *ngIf="ts.hasTranslation('nav.map')" routerLink="/map" class="nav-card" style="background-color: var(--color-zelena)">{{ ts.translate('nav.map') }}</a>
+      <a *ngIf="ts.hasTranslation('nav.dresscode')" routerLink="/dresscode-jidlo" class="nav-card" style="background-color: var(--color-ruzova)">{{ ts.translate('nav.dresscode') }}</a>
+      <a *ngIf="ts.hasTranslation('nav.dary')" routerLink="/dary-pomoc" class="nav-card" style="background-color: var(--color-oranzova)">{{ ts.translate('nav.dary') }}</a>
     </div>
   `,
   styles: [`
@@ -80,4 +83,6 @@ import { RouterLink } from '@angular/router';
     }
   `]
 })
-export class HomeComponent {}
+export class HomeComponent {
+  ts = inject(TranslationService);
+}

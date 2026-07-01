@@ -1,3 +1,8 @@
+<div class="lang-switcher">
+  <span (click)="ts.setLanguage('cz')" [class.active]="ts.currentLang() === 'cz'" title="Čeština">🇨🇿</span>
+  <span (click)="ts.setLanguage('fr')" [class.active]="ts.currentLang() === 'fr'" title="Français">🇫🇷</span>
+</div>
+
 <main>
   <router-outlet></router-outlet>
 </main>

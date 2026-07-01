@@ -1,25 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslationService } from '../../services/translation.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-dary-pomoc',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgIf],
   template: `
     <div class="container">
-      <a routerLink="/" class="back-link">← Zpět</a>
-      <h1>Dary & Pomoc</h1>
+      <a routerLink="/" class="back-link">{{ ts.translate('back') }}</a>
+      <h1>{{ ts.translate('dary_page.title') }}</h1>
 
       <section>
-        <div class="card" style="border-left-color: var(--color-zelena)">
-          <h3>Dary</h3>
-          <p>Vše máme a nic nepotřebujeme. Pokud byste nám i tak chtěli něco podarovat, tak nejvíce oceníme finanční příspěvek.</p>
+        <div class="card" style="border-left-color: var(--color-zelena)" *ngIf="ts.hasTranslation('dary_page.gifts')">
+          <h3>{{ ts.translate('dary_page.gifts.title') }}</h3>
+          <p>{{ ts.translate('dary_page.gifts.text') }}</p>
         </div>
 
-        <div class="card" style="border-left-color: var(--color-zluta)">
-          <h3>Pomocná ruka</h3>
-          <p>Na chalupě budeme už v průběhu týdne a rádi užijeme společnost a pomocnou ruku. Dejte vědět, pokud budete chtít už s námi na Chlumci pobýt dřív, ať nakoupíme dostatečné množství sudů.</p>
-          <p>Přijímáme návrhy na hry, drinky a jiné nápady na cokoliv.</p>
+        <div class="card" style="border-left-color: var(--color-zluta)" *ngIf="ts.hasTranslation('dary_page.help')">
+          <h3>{{ ts.translate('dary_page.help.title') }}</h3>
+          <p *ngIf="ts.hasTranslation('dary_page.help.text1')">{{ ts.translate('dary_page.help.text1') }}</p>
+          <p *ngIf="ts.hasTranslation('dary_page.help.text2')">{{ ts.translate('dary_page.help.text2') }}</p>
         </div>
       </section>
     </div>
@@ -29,4 +31,6 @@ import { RouterLink } from '@angular/router';
     h3 { text-align: left; margin-top: 0; }
   `]
 })
-export class DaryPomocComponent {}
+export class DaryPomocComponent {
+  ts = inject(TranslationService);
+}

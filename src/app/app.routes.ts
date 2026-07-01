@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProgramComponent } from './pages/program/program.component';
 import { UbytovaniComponent } from './pages/ubytovani/ubytovani.component';
 import { DopravaComponent } from './pages/doprava/doprava.component';
+import { MapComponent } from './pages/map/map.component';
 import { DresscodeJidloComponent } from './pages/dresscode-jidlo/dresscode-jidlo.component';
 import { DaryPomocComponent } from './pages/dary-pomoc/dary-pomoc.component';
 
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: 'program', component: ProgramComponent },
   { path: 'ubytovani', component: UbytovaniComponent },
   { path: 'doprava', component: DopravaComponent },
+  { path: 'map', component: MapComponent },
   { path: 'dresscode-jidlo', component: DresscodeJidloComponent },
   { path: 'dary-pomoc', component: DaryPomocComponent },
   { path: '**', redirectTo: '' }
