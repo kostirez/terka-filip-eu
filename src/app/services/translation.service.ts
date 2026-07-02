@@ -11,7 +11,7 @@ export class TranslationService {
   private translations: Record<Language, Record<string, any>> = {
     cz: {
       title: 'Terka & Filip',
-      date: '15. června 2026',
+      date: '15. srpen 2026',
       nav: {
         program: 'Program',
         ubytovani: 'Ubytování',
